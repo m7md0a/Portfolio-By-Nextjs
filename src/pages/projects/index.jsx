@@ -51,7 +51,7 @@ function Projects({projects, aboutData}) {
 
 export default Projects
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
     let projects = await getProjects();
     let aboutData = await getAbout();

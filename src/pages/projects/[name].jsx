@@ -51,32 +51,32 @@ function Project({project,readMe}) {
 export default Project
 
 
-export async function getStaticPaths() {
+// export async function getStaticPaths() {
 
-  try {
-    let projects = await getProjects();
+//   try {
+//     let projects = await getProjects();
 
-    let paths = projects.map(e=> {
-      return {
-        params : {name : `${e.name}`}
-      }
-    })
-    return {
-      paths,
-      fallback:false
-    }
+//     let paths = projects.map(e=> {
+//       return {
+//         params : {name : `${e.name}`}
+//       }
+//     })
+//     return {
+//       paths,
+//       fallback:false
+//     }
     
-  } catch (error) {
-    // console.log(error);
-    return {
-      paths:[],
-      fallback:false
-    }
+//   } catch (error) {
+//     // console.log(error);
+//     return {
+//       paths:[],
+//       fallback:false
+//     }
     
-  }
-}
+//   }
+// }
 
-export async function getStaticProps(ctx){
+export async function getServerSideProps(ctx){
   
     try {
         let name = ctx.params.name,

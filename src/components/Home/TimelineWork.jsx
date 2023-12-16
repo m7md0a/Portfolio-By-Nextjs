@@ -41,7 +41,7 @@ const Right = (props) => {
                         <p className="mb-4 text-base font-normal text-base-content text-opacity-75">{props.description}</p>
                         <div className='space-x-1'>
                           {props.links.map((e,i) => {
-                            return <a key={i} target="_blank" href={e.link}><Button size='sm' color="primary" variant='outline'>{e.text}</Button></a>
+                            return <a key={i} target="_blank"n   href={e.link}><Button size='sm' color="primary" variant='outline'>{e.text}</Button></a>
                           })}
                         </div>
                     </div>
