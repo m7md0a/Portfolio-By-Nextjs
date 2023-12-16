@@ -51,8 +51,8 @@ function About(props) {
                             </Button>
                         </a> */}
                         
-                        <Link href='/projects'>
-                            <Button color='primary' variant='outline'>View Projects</Button>
+                        <Link target="_blank" href={about.downloadPDF}>
+                            <Button color='primary' variant='outline'>My resume!</Button>
                         </Link>
 
                     </div>

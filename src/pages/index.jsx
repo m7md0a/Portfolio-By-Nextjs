@@ -12,7 +12,7 @@ export default function index({profileData, aboutData}) {
 
   return (
     <div className='-mt-20'>
-      <HeroApp profileData={profileData} />
+      <HeroApp profileData={profileData} about={about} />
       <ContainerApp className='min-h-[65vh]'>
         {profileData && <About data={profileData} about={about} />}
       </ContainerApp>

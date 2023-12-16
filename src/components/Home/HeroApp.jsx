@@ -5,7 +5,7 @@ import { Button, Hero } from 'react-daisyui'
 // import HeroImg from './../../assets/img/hero-1.jpg'
 
 function HeroApp(props) {
-    const {profileData} = props;
+    const {profileData, about} = props;
   return (
     <Hero className='h-[92vh]  mb-20 bg-opacity-1' //-mt-20
         style={{
@@ -24,8 +24,8 @@ function HeroApp(props) {
             {/* <a href={about.downloadPDF} download="Mohamed-Abdelrahman.pdf" target="_blank" rel="noreferrer">
                 <Button color='primary'>Download PDF</Button>
             </a> */}
-            <Link href='/projects'>
-                <Button color='primary'>View Projects</Button>
+            <Link target="_blank" href={about.downloadPDF}>
+                <Button color='primary'>My resume!</Button>
             </Link>
             </div>
         </Hero.Content>
