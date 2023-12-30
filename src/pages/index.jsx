@@ -53,7 +53,6 @@ export async function getStaticProps() {
       revalidate: 10
     }
   } catch (error) {
-    console.log(error);
     return {props : {
         profileData : {}
       },
