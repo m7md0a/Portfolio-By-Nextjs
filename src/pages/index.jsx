@@ -2,14 +2,13 @@ import { getProfileData, getAbout } from '@/axios'
 import ContainerApp from '@/components/ContainerApp'
 import About from '@/components/Home/About'
 import HeroApp from '@/components/Home/HeroApp'
-import React, { useState } from 'react'
+import React from 'react'
 import TimelineWork from '@/components/Home/TimelineWork'
 import Metric from '@/components/Home/Metric'
 import Contact from '@/components/Home/Contact'
 
 export default function index({profileData, aboutData}) {
   const {about, timeLine, metrics, skills} = aboutData;
-
   return (
     <div className='-mt-20'>
       <HeroApp profileData={profileData} about={about} />
@@ -46,17 +45,19 @@ export async function getStaticProps() {
   try {
     let project =  await getProfileData();
     let aboutData = await getAbout();
-    // console.log(aboutData);
     return {
       props:{
         profileData : project,
         aboutData
-      }
+      },
+      revalidate: 10
     }
   } catch (error) {
     console.log(error);
     return {props : {
-      profileData : {}
-    }}
+        profileData : {}
+      },
+      revalidate: 10
+    }
   }
 }

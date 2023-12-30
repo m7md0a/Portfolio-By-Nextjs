@@ -1,5 +1,5 @@
-import React from 'react'
-import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
+
 import { Badge } from 'react-daisyui'
 import { getOneProject, getProjects, getReadme } from '@/axios'
 import ContainerApp from '@/components/ContainerApp'
@@ -14,9 +14,8 @@ function Project({project,readMe}) {
   }
   const clearSpace = (e) => {
     return e.split('-').join(' ');
-  }
-
-
+  }   
+  
   return /* !project.name ? handleClick() : */ (
     <ContainerApp>
       <div className='rounded pb-5 w-full space-y-5 relative'>
@@ -50,32 +49,6 @@ function Project({project,readMe}) {
 
 export default Project
 
-
-export async function getStaticPaths() {
-
-  try {
-    let projects = await getProjects();
-
-    let paths = projects.map(e=> {
-      return {
-        params : {name : `${e.name}`}
-      }
-    })
-    return {
-      paths,
-      fallback:false
-    }
-    
-  } catch (error) {
-    // console.log(error);
-    return {
-      paths:[],
-      fallback:false
-    }
-    
-  }
-}
-
 export async function getStaticProps(ctx){
   
     try {
@@ -86,14 +59,41 @@ export async function getStaticProps(ctx){
             props:{
               project,
               readMe : readme
-            }
+            },
+            revalidate: 10
         }
     }
     catch(error) {
-        // console.log(error);
-        return {props : {
-            project : {},
-            readMe: {}
-        }}
+      return {
+        props : {
+          project : {},
+          readMe: {}
+        },
+        revalidate: 10,
+        notFound: true
+      }
     }
+}
+
+export async function getStaticPaths() {
+
+  try {
+    let projects = await getProjects();
+    let paths = projects.map(e=> {
+      return {
+        params : {name : `${e.name}`}
+      }
+    })
+    return {
+      paths,
+      fallback: 'blocking'
+    }
+    
+  } catch (error) {
+    return {
+      paths:[],
+      fallback: 'blocking',
+    }
+    
+  }
 }

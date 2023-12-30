@@ -55,17 +55,19 @@ export async function getStaticProps() {
   try {
     let projects = await getProjects();
     let aboutData = await getAbout();
-    // console.log(aboutData);
     return {
       props:{
         projects,
         aboutData
-      }
+      },
+      revalidate: 10
     }
   } catch (error) {
-    console.log(error);
-    return {props : {
-      projects : {}
-    }}
+    return {
+      props : {
+        projects : {}
+      },
+      revalidate: 10
+    }
   }
 }
